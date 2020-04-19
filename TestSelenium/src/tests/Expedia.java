@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -46,12 +46,17 @@ public class Expedia {
 			//driver.findElement(By.cssSelector("input[id = 'star-4']")).click();
 			//driver.findElement(By.partialLinkText("4")).click();
 					
-			  
-			driver.findElement(By.cssSelector("input[id='price-1-1'][value='1']")).click();
-
+			WebDriverWait wait = new WebDriverWait(driver,40);
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id='price-1-1'][value='1']")));
+			
+			
+			driver.findElement(By.xpath("//input[@id='price-1-1']")).click();
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//button[@id='playback-filter-pill-price-1']"))));
+			//driver.findElement(By.cssSelector("input[id='price-1-1'][value='1']")).click();
 			//3. Analyze the results and make our selection
 			//driver.findElement(By.xpath("//*[@id='app']/div[1]/div/div/div[1]/div[1]/main/div[2]/section[2]/ol/li[3]/div/div/a")).click();
 			//driver.findElement(By.xpath("//*[@id="app"]/div[1]/div/div/div[1]/div[1]/main/div[2]/section[2]/ol/li[3]/div/div/a"))
+			  
 			  driver.findElement(By.xpath("//*[@class='results']/ol/li[3]/div/div/a")).click();
 			  
 			//Switch windows 
@@ -61,7 +66,8 @@ public class Expedia {
 
 			//Print Hotel Name
 			
-			String hotelName=driver.findElement(By.className("uitk-cell all-cell-shrink uitk-type-heading-600 all-b-padding-half")).getText();
+			String hotelName=driver.findElement(By.xpath("//h1[@data-stid='content-hotel-title']")).getText();
+			//h1[@data-stid='content-hotel-title']
 			System.out.println("Hotel Name :" +hotelName);
 			  
 	    //4. Fill contact and billing 
