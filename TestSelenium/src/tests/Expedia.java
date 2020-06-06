@@ -24,14 +24,15 @@ public class Expedia {
 	 
 		@Test
 		
-		public void hotelReservation(){
+		public void hotelReservation() throws InterruptedException {
 		//1. Search 
 			driver.findElement(By.id("tab-hotel-tab-hp")).click();
 			driver.findElement(By.id("hotel-destination-hp-hotel")).clear();
 			driver.findElement(By.id("hotel-destination-hp-hotel")).sendKeys(city);
+			Thread.sleep(2000);
 			driver.findElement(By.id("hotel-checkin-hp-hotel")).clear();
+			Thread.sleep(2000);
 			driver.findElement(By.id("hotel-checkin-hp-hotel")).sendKeys(checkIn);
-			driver.findElement(By.id("hotel-checkout-hp-hotel")).clear();
 			driver.findElement(By.id("hotel-checkout-hp-hotel")).clear();			
 			driver.findElement(By.id("hotel-checkout-hp-hotel")).sendKeys(checkOut);
 			driver.findElement(By.xpath("//*[@id='gcw-hotel-form-hp-hotel']/div[13]/label/button")).click();
